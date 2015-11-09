@@ -31,7 +31,8 @@
 			</div>
 		</div>
 
-		<div id="popoverRight" class="popover fade right in" role="tooltip" style=" top :100px; left: 800px; display: block;">
+
+		<div id="popoverRight" class="popover fade right in" role="tooltip" style="top :100px; left: 800px; display: block;">
 			<div class="arrow" style="top: 50%;"></div>
 			<div class="popover-content">
 				<ul>
@@ -44,13 +45,17 @@
 				</ul>
 			</div>
 		</div>
-	</div>
+ 	</div>
 
-	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/d3.min.js"></script>
 	<script src="js/index.js"></script>
-
+	<script>
+	$(function() {
+		// $('#container').append('<div id="popoverRight" class="popover fade right in" role="tooltip" style="top :100px; left: 800px; display: block;">')
+	});
+	</script>
 
 </body>
 </html>

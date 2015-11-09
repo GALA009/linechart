@@ -140,9 +140,9 @@
 	var dragR = d3.behavior.drag().on("drag", dragmoveR);
 
 	function dragmoveR(d) {
-		if( d.cx >= 100 && d.cx <= 1101)
+		if( d.cx >= 100 && d.cx <= 1100)
 		{
-			if( d3.event.x >=100 && d3.event.x <= 1101)
+			if( d3.event.x >=100 && d3.event.x <= 1100)
 			{
 				var X = document.getElementById("moveR").getAttribute("cx");			//圆点和直线圆点X坐标
 
@@ -154,16 +154,16 @@
 				.attr("x2", function () {var x2 = X; return x2; });
 
 				d3.select("#popoverRight")
-				.attr("style", "top: 100px;" + "left:"+ X +"px; " + "display: block; ")
+				.attr("style", "display: block; top: 100px;" + "left:"+ X +"px; ")
 
 			}
 		}else if( d.cx < 100){
 			d3.select(this)
 			  .attr("cx", d.cx = 100 )
 			  .attr("cy", d.cy = 100 );
-		}else if(d.cx > 1101){
+		}else if(d.cx > 1100){
 			d3.select(this)
-			  .attr("cx", d.cx = 1101 )
+			  .attr("cx", d.cx = 1100 )
 			  .attr("cy", d.cy = 100 );
 		}
 	}
@@ -196,6 +196,27 @@
 		.attr("y2", RightPointY)
 		.attr("stroke","red")
 		.attr("stroke-width",1);
+
+	//右轴数据显示框
+	// svg.append("div")
+	// 	.attr("id", "popoverRight")
+	// 	.attr("class", "popover fade right in")
+	// 	.attr("role", "tooltip")
+	// 	.attr("style", "display: block; width: 300px; height: 300px; top :100px; left: 800px; background: red;");
+
+	// svg.select("#popoverRight")
+	// 	.append("div")
+	// 	.attr("class","arrow")
+	// 	.attr("style","top: 50%;")
+	// 	.append("div")
+	// 	.attr("class","popover-content")
+	// 	.append("ul")
+	// 	.append("li")
+	// 	.text("asdfdsafdsasd");
+
+
+
+
 
 
 

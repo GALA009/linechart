@@ -1,16 +1,5 @@
-#container{
-	background: #ddd;
-	width: 1200px;
-	height: 700px;
-}
+path{ fill: none; stroke-width: 2; }
 
-path{
-	fill: none;
-	stroke-width: 2;
-}
-
-.domain, .tick line{
-	stroke: gray;
-	stroke-width: 1;
-}
+#container{	background: #fff; width: 1200px; height: 700px; }
+.domain, .tick line{ stroke: gray; stroke-width: 1; }
 
