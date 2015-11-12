@@ -1,5 +1,5 @@
 path{ fill: none; stroke-width: 2; }
-
+#arrow path{ fill: #B3B3B3; }
 #container{	background: #fff; width: 1200px; height: 700px; margin: 0 auto; position: relative; }
 #popoverLeft{ margin: 0 auto; }
 #popoverRight{ margin: 0 auto; }

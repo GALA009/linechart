@@ -59,38 +59,32 @@
 	gBatt.append("g").call(y_axis_r2).attr("transform", "translate(1030,0)")
 
 //会绘制右侧箭头
-var defs = svg.append("defs");
+	var defs = d3.select("svg").append("defs");
 
-var arrowMarker = defs.append("marker")
-						.attr("id","arrow")
-						.attr("markerUnits","strokeWidth")
-					    .attr("markerWidth","12")
-                        .attr("markerHeight","12")
-                        .attr("viewBox","0 0 12 12")
-                        .attr("refX","6")
-                        .attr("refY","6")
-                        .attr("orient","auto");
+	var arrowMarker = defs.append("marker")
+							.attr("id","arrow")
+							.attr("markerUnits","strokeWidth")
+						    .attr("markerWidth","12")
+	                        .attr("markerHeight","12")
+	                        .attr("viewBox","0 0 12 12")
+	                        .attr("refX","6")
+	                        .attr("refY","6")
+	                        .attr("orient","auto");
 
-var arrow_path = "M2,2 L10,6 L2,10 L6,6 L2,2";
+	var arrow_path = "M2,2 L10,6 L2,10 L6,6 L2,2";
 
-arrowMarker.append("path")
-			.attr("d",arrow_path)
-			.attr("fill","#000");
+	arrowMarker.append("path")
+				.attr("d",arrow_path)
+				.attr("fill","#000");
 
-var line = svg.append("line")
-			 .attr("x1",0)
-			 .attr("y1",0)
-			 .attr("x2",200)
-			 .attr("y2",50)
-			 .attr("stroke","red")
-			 .attr("stroke-width",2)
-			 .attr("marker-end","url(#arrow)");
-
-
-
-
-
-
+	var line = svg.append("line")
+				 .attr("x1",1130)
+				 .attr("y1",100)
+				 .attr("x2",1130)
+				 .attr("y2",550)
+				 .attr("stroke","#B3B3B3")
+				 .attr("stroke-width",2)
+				 .attr("marker-end","url(#arrow)");
 
 
 	//曲线图背景直线
