@@ -17,35 +17,44 @@
 </head>
 <body>
 	<div id="container">
-		<div id="popoverLeft" class="popover fade left in" role="tooltip" style=" top :100px; left: 170px; display: block;">
+		<div id="popoverLeft" class="popover fade left in" role="tooltip" style=" top :100px; left: 114px; display: block;">
 			<div class="arrow" style="top: 50%;"></div>
 			<div class="popover-content">
 				<ul>
-					<li><i>Self consumption</i><span>3.5KWH</span></li>
-					<li><i>Self consumption</i><span>3.5KWH</span></li>
-					<li><i>Self consumption</i><span>3.5KWH</span></li>
-					<li><i>Self consumption</i><span>3.5KWH</span></li>
-					<li><i>Self consumption</i><span>3.5KWH</span></li>
-					<li><i>Self consumption</i><span>3.5KWH</span></li>
+					<li><i>Self consumption：</i><span>3.5KWH</span></li>
+					<li><i>Grid supply：</i><span>1.5KW/7.5KWH</span></li>
+					<li><i>PV：</i><span>3.8KW/19KWH</span></li>
+					<li><i>Sold to grid：</i><span>1.2KW/6KWH</span></li>
+					<li><i>Load/Consumption：</i><span>3.8KW/19KWH</span></li>
+					<li><i>Battery charge：</i><span>1.1KW/5.5KWH</span></li>
+					<li><i>Battery Discharge</i><span>2.4KWH</span></li>
+					<li><i>SOC：</i><span>70%</span></li>
 				</ul>
 			</div>
 		</div>
 
 
-		<div id="popoverRight" class="popover fade right in" role="tooltip" style="top :100px; left: 800px; display: block;">
+		<div id="popoverRight" class="popover fade right in" role="tooltip" style="top :100px; left: 810px; display: block;">
 			<div class="arrow" style="top: 50%;"></div>
 			<div class="popover-content">
 				<ul>
-					<li><i>Self consumption</i><span>3.5KWH</span></li>
-					<li><i>Self consumption</i><span>3.5KWH</span></li>
-					<li><i>Self consumption</i><span>3.5KWH</span></li>
-					<li><i>Self consumption</i><span>3.5KWH</span></li>
-					<li><i>Self consumption</i><span>3.5KWH</span></li>
-					<li><i>Self consumption</i><span>3.5KWH</span></li>
+					<li><i>Self consumption：</i><span>3.5KWH</span></li>
+					<li><i>Grid supply：</i><span>1.5KW/7.5KWH</span></li>
+					<li><i>PV：</i><span>3.8KW/19KWH</span></li>
+					<li><i>Sold to grid：</i><span>1.2KW/6KWH</span></li>
+					<li><i>Load/Consumption：</i><span>3.8KW/19KWH</span></li>
+					<li><i>Battery charge：</i><span>1.1KW/5.5KWH</span></li>
+					<li><i>Battery Discharge</i><span>2.4KWH</span></li>
+					<li><i>SOC：</i><span>70%</span></li>
 				</ul>
 			</div>
 		</div>
- 	</div>
+		<defs>
+		<marker xmlns="http://www.w3.org/2000/svg" id="arrow" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="6" refY="6" orient="auto">
+		        <path d="M2,2 L10,6 L2,10 L6,6 L2,2" style="fill: #000000;"/>
+		</marker>
+		</defs>
+  	</div>
 
 	<script src="js/jquery-1.11.3.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -54,7 +63,6 @@
 	<script>
 	$(function() {
 		// $('#container').append('<div id="popoverRight" class="popover fade right in" role="tooltip" style="top :100px; left: 800px; display: block;">')
-	});
 	</script>
 
 </body>

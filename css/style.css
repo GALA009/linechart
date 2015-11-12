@@ -1,5 +1,15 @@
 path{ fill: none; stroke-width: 2; }
 
-#container{	background: #fff; width: 1200px; height: 700px; }
-.domain, .tick line{ stroke: gray; stroke-width: 1; }
+#container{	background: #fff; width: 1200px; height: 700px; margin: 0 auto; position: relative; }
+#popoverLeft{ margin: 0 auto; }
+#popoverRight{ margin: 0 auto; }
+.domain, .tick line{ stroke: #B3B3B3; stroke-width: 1; }
+
+/*提示框*/
+
+.fade.in { opacity: 0.8;}
+.popover-content { width: 275px; }
+.popover-content ul { list-style: none; padding-left: 0; }
+.popover-content i { display: inline-block; width: 145px; font-style: normal; font-weight: bold; }
+.popover-content span { display: inline-block; width: 100px; text-align: right; }
 
