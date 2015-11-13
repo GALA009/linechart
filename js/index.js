@@ -195,14 +195,14 @@
 				d3.select("#popoverRight")
 				.attr("style", "top: 110px;" + "left:"+ xR +"px; display: block; ");
 
-				d3.select("#RSelf span").text(function () {var x = X; return x; });
-				d3.select("#RGrid span").text(function () {var x = X; return x; });
-				d3.select("#RPV span").text(function () {var x = X; return x; });
-				d3.select("#RSold span").text(function () {var x = X; return x; });
-				d3.select("#RLoad span").text(function () {var x = X; return x; });
-				d3.select("#RCharge span").text(function () {var x = X; return x; });
-				d3.select("#RDischarge span").text(function () {var x = X; return x; });
-				d3.select("#RSOC span").text(function () {var x = X; return x; });
+				d3.select("#RSelf span").text(function () {return x = X; });
+				d3.select("#RGrid span").text(function () {return x = X; });
+				d3.select("#RPV span").text(function () {return x = X; });
+				d3.select("#RSold span").text(function () {return x = X; });
+				d3.select("#RLoad span").text(function () {return x = X; });
+				d3.select("#RCharge span").text(function () {return x = X; });
+				d3.select("#RDischarge span").text(function () {return x = X; });
+				d3.select("#RSOC span").text(function () {return x = X; });
 
 
 			}
