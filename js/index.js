@@ -37,28 +37,27 @@
 	d3.select("g").append("path").attr("d", line_generator(data2)).attr("stroke","blue")
 	d3.select("g").append("path").attr("d", line_generator(data3)).attr("stroke","green")
 
-
 	//添加XY轴标尺
 	var x_axis = d3.svg.axis().scale(scale1_x).tickValues([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);					//时间轴
 	var x2_axis = d3.svg.axis().scale(scale2_x).outerTickSize([0]);																				//0刻度线
 	var y_axis = d3.svg.axis().scale(scale1_y).tickSize(0,0).tickPadding(30).tickValues([0,1000,2000,3000,4000,5000]).orient("left");			//左侧上部刻度
 	var y2_axis = d3.svg.axis().scale(scale2_y).tickSize(0,0).tickPadding(30).tickValues([0,1000,2000,3000,4000,5000,6000]).orient("left");									//左侧下部刻度
-	var y_axis_r1 = d3.svg.axis().scale(scale_y_r1).tickSize(0,0).tickValues([0,20,40,60,80,100]).orient("right");								//右测上部刻度
-	var y_axis_r2 = d3.svg.axis().scale(scale_y_r2).tickSize(0,0).tickValues([55,70,85,100]).orient("right");									//右测下部刻度
+	var y_axis_r1 = d3.svg.axis().scale(scale_y_r1).tickSize(0,0).tickValues([0,20,40,60,80,100]).tickFormat(function(d) { return d + "%"; }).orient("right");								//右测上部刻度
+	var y_axis_r2 = d3.svg.axis().scale(scale_y_r2).tickSize(0,0).tickValues([55,70,85,100]).tickFormat(function(d) { return "BATT:" + "  " + d +"%"; }).orient("right");									//右测下部刻度
 
 	//可移动左右轴
 	var moveL_axis = d3.svg.axis().scale(move_l).orient("left").outerTickSize([0]);																//左移动轴
 	var moveR_axis = d3.svg.axis().scale(move_r).orient("left").outerTickSize([0]);																//右移动轴
 
-	g.append("g").call(x_axis).attr("transform", "translate(0," + g_height +")").append("text").text("H").attr("transform", "translate(1010,30)")//时间轴
-	g.append("g").call(y_axis)
-	g.append("g").call(y_axis_r1).attr("transform", "translate(1030,0)")
+	g.append("g").call(x_axis).attr("transform", "translate(0," + g_height +")").append("text").text("H").attr("transform", "translate(1010,30)");//时间轴
+	g.append("g").call(y_axis);
+	g.append("g").call(y_axis_r1).attr("transform", "translate(1010,0)");
 
-	gBatt.append("g").call(x2_axis).append("text").text("40").attr("transform", "translate(1038,16)")		//0刻度线
+	gBatt.append("g").call(x2_axis).append("text").text("BATT:  40%").attr("transform", "translate(1013,16)")									//0刻度线
 	gBatt.append("g").call(y2_axis)
-	gBatt.append("g").call(y_axis_r2).attr("transform", "translate(1030,0)")
+	gBatt.append("g").call(y_axis_r2).attr("transform", "translate(1010,0)")
 
-//会绘制右侧箭头
+	//会绘制右侧箭头
 	var defs = d3.select("svg").append("defs");
 
 	var arrowMarker = defs.append("marker")
@@ -78,10 +77,10 @@
 				.attr("fill","#000");
 
 	var line = svg.append("line")
-				 .attr("x1",1130)
-				 .attr("y1",100)
-				 .attr("x2",1130)
-				 .attr("y2",550)
+				 .attr("x1",1110)
+				 .attr("y1",90)
+				 .attr("x2",1110)
+				 .attr("y2",600)
 				 .attr("stroke","#B3B3B3")
 				 .attr("stroke-width",2)
 				 .attr("marker-end","url(#arrow)");
@@ -102,7 +101,7 @@
 			bglineY+=50;
 	};
 
-//绘制左右可移动轴
+	//绘制左右可移动轴
 	var LeftPointX = 400;	//左侧圆点X Y坐标
 	var LeftPointY = 650;
 	var RightPointX = 800;	//右侧圆点X Y坐标
@@ -126,7 +125,7 @@
 				.attr("x1", function () {var x1 = X; return x1; })
 				.attr("x2", function () {var x2 = X; return x2; });
 				d3.select("#popoverLeft")
-				.attr("style", "top: 100px;" + "left:"+ popoverL +"px; " + "display: block; ")
+				.attr("style", "top: 110px;" + "left:"+ popoverL +"px; " + "display: block; ")
 
 			}
 		}else if( d.cx < 100){
@@ -191,7 +190,7 @@
 				.attr("x2", function () {var x = X; return x; });
 
 				d3.select("#popoverRight")
-				.attr("style", "top: 100px;" + "left:"+ xR +"px; display: block; ")
+				.attr("style", "top: 110px;" + "left:"+ xR +"px; display: block; ")
 
 			}
 		}else if( d.cx < 100){
