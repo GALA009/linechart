@@ -38,17 +38,22 @@
 	d3.select("g").append("path").attr("d", line_generator(data3)).attr("stroke","green")
 
 	//添加XY轴标尺
-	var x_axis = d3.svg.axis().scale(scale1_x).tickValues([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);					//时间轴
-	var x2_axis = d3.svg.axis().scale(scale2_x).outerTickSize([0]);																				//0刻度线
-	var y_axis = d3.svg.axis().scale(scale1_y).tickSize(0,0).tickPadding(30).tickValues([0,1000,2000,3000,4000,5000]).orient("left");			//左侧上部刻度
-	var y2_axis = d3.svg.axis().scale(scale2_y).tickSize(0,0).tickPadding(30).tickValues([0,1000,2000,3000,4000,5000,6000]).orient("left");									//左侧下部刻度
-	var y_axis_r1 = d3.svg.axis().scale(scale_y_r1).tickSize(0,0).tickValues([0,20,40,60,80,100]).tickFormat(function(d) { return d + "%"; }).orient("right");								//右测上部刻度
-	var y_axis_r2 = d3.svg.axis().scale(scale_y_r2).tickSize(0,0).tickValues([55,70,85,100]).tickFormat(function(d) { return "BATT:" + "  " + d +"%"; }).orient("right");									//右测下部刻度
+	var x_axis = d3.svg.axis().scale(scale1_x).tickValues([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);		//时间轴
+	var x2_axis = d3.svg.axis().scale(scale2_x).outerTickSize([0]);																	//0刻度线
+	var y_axis = d3.svg.axis().scale(scale1_y)
+					.tickSize(0,0).tickPadding(30).tickValues([0,1000,2000,3000,4000,5000]).tickFormat(function(d) { return d; }).orient("left");	//左侧上部刻度
+	var y2_axis = d3.svg.axis().scale(scale2_y)
+						.tickSize(0,0).tickPadding(30).tickValues([0,1000,2000,3000,4000,5000,6000]).tickFormat(function(d) { return d; }).orient("left");//左侧下部刻度
+	var y_axis_r1 = d3.svg.axis().scale(scale_y_r1)
+						.tickSize(0,0).tickValues([0,20,40,60,80,100]).tickFormat(function(d) { return d + "%"; }).orient("right");				//右测上部刻度
+	var y_axis_r2 = d3.svg.axis().scale(scale_y_r2)
+						.tickSize(0,0).tickValues([55,70,85,100]).tickFormat(function(d) { return "BATT:" + "  " + d +"%"; }).orient("right");//右测下部刻度
 
 	//可移动左右轴
 	var moveL_axis = d3.svg.axis().scale(move_l).orient("left").outerTickSize([0]);																//左移动轴
 	var moveR_axis = d3.svg.axis().scale(move_r).orient("left").outerTickSize([0]);																//右移动轴
 
+	//绘制显示
 	g.append("g").call(x_axis).attr("transform", "translate(0," + g_height +")").append("text").text("H").attr("transform", "translate(1010,30)");//时间轴
 	g.append("g").call(y_axis);
 	g.append("g").call(y_axis_r1).attr("transform", "translate(1010,0)");
@@ -110,6 +115,7 @@
 	//绘制左侧移动轴圆和直线
 	var dragL = d3.behavior.drag().on("drag", dragmoveL);
 
+	//圆点按下移动函数
 	function dragmoveL(d) {
 		if( d.cx >= 100 && d.cx <= 1100)
 		{
@@ -124,8 +130,8 @@
 				d3.select("#lineL")
 				.attr("x1", function () {var x1 = X; return x1; })
 				.attr("x2", function () {var x2 = X; return x2; });
-				d3.select("#popoverLeft")
-				.attr("style", "top: 110px;" + "left:"+ popoverL +"px; " + "display: block; ")
+				d3.select("#popoverLeft").attr("style", "top: 110px;" + "left:"+ popoverL +"px; " + "display: block; ");
+
 
 			}
 		}else if( d.cx < 100){
@@ -168,9 +174,6 @@
 		.attr("stroke","#B3B3B3")
 		.attr("stroke-width",1);
 
-
-
-
 //绘制右侧移动轴圆和直线
 	var dragR = d3.behavior.drag().on("drag", dragmoveR);
 
@@ -190,7 +193,17 @@
 				.attr("x2", function () {var x = X; return x; });
 
 				d3.select("#popoverRight")
-				.attr("style", "top: 110px;" + "left:"+ xR +"px; display: block; ")
+				.attr("style", "top: 110px;" + "left:"+ xR +"px; display: block; ");
+
+				d3.select("#RSelf span").text(function () {var x = X; return x; });
+				d3.select("#RGrid span").text(function () {var x = X; return x; });
+				d3.select("#RPV span").text(function () {var x = X; return x; });
+				d3.select("#RSold span").text(function () {var x = X; return x; });
+				d3.select("#RLoad span").text(function () {var x = X; return x; });
+				d3.select("#RCharge span").text(function () {var x = X; return x; });
+				d3.select("#RDischarge span").text(function () {var x = X; return x; });
+				d3.select("#RSOC span").text(function () {var x = X; return x; });
+
 
 			}
 		}else if( d.cx < 100){
@@ -233,7 +246,25 @@
 		.attr("stroke","#B3B3B3")
 		.attr("stroke-width",1);
 
+//左显示框数据
+	d3.select("#LSelf").append("span").text("3.5KWH");
+	d3.select("#LGrid").append("span").text("1.5KW/7.5KWH");
+	d3.select("#LPV").append("span").text("3.8KW/19KWH");
+	d3.select("#LSold").append("span").text("1.2KW/6KWH");
+	d3.select("#LLoad").append("span").text("3.8KW/19KWH");
+	d3.select("#LCharge").append("span").text("1.1KW/5.5KWH");
+	d3.select("#LDischarge").append("span").text("2.4KWH");
+	d3.select("#LSOC").append("span").text("70%");
 
+//右显示框数据
+	d3.select("#RSelf").append("span").text("3.5KWH");
+	d3.select("#RGrid").append("span").text("1.5KW/7.5KWH");
+	d3.select("#RPV").append("span").text("3.8KW/19KWH");
+	d3.select("#RSold").append("span").text("1.2KW/6KWH");
+	d3.select("#RLoad").append("span").text("3.8KW/19KWH");
+	d3.select("#RCharge").append("span").text("1.1KW/5.5KWH");
+	d3.select("#RDischarge").append("span").text("2.4KWH");
+	d3.select("#RSOC").append("span").text("70%");
 
 
 
