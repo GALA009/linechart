@@ -5,7 +5,7 @@
 	g_height = height - margin.top - 50;
 
 	//svg
-	var svg = d3.select("#container").append("svg").attr("width",width).attr("height",height)
+	var linesvg = d3.select("#line-chart").append("svg").attr("width",width).attr("height",height)
 
 	var g = d3.select("svg").append("g").attr("transform", "translate(" + margin.left + ",100)")
 	var gBatt = d3.select("svg").append("g").attr("transform", "translate(" + margin.left + ",350)")
@@ -54,11 +54,11 @@
 	var moveR_axis = d3.svg.axis().scale(move_r).orient("left").outerTickSize([0]);																//右移动轴
 
 	//绘制显示
-	g.append("g").call(x_axis).attr("transform", "translate(0," + g_height +")").append("text").text("H").attr("transform", "translate(1010,30)");//时间轴
+	g.append("g").call(x_axis).attr("transform", "translate(0," + g_height +")")
+				 .append("text").text("H").attr("transform", "translate(1010,30)");							//时间轴
 	g.append("g").call(y_axis);
 	g.append("g").call(y_axis_r1).attr("transform", "translate(1010,0)");
-
-	gBatt.append("g").call(x2_axis).append("text").text("BATT:  40%").attr("transform", "translate(1013,16)")									//0刻度线
+	gBatt.append("g").call(x2_axis).append("text").text("BATT:  40%").attr("transform", "translate(1013,16)") //0刻度线
 	gBatt.append("g").call(y2_axis)
 	gBatt.append("g").call(y_axis_r2).attr("transform", "translate(1010,0)")
 
@@ -81,7 +81,7 @@
 				.attr("d",arrow_path)
 				.attr("fill","#000");
 
-	var line = svg.append("line")
+	var line = linesvg.append("line")
 				 .attr("x1",1110)
 				 .attr("y1",90)
 				 .attr("x2",1110)
@@ -94,7 +94,7 @@
 	//曲线图背景直线
 	var bglineY = 100;
 	for (var i = 0; i < 11; i++) {
-		svg.append("line")
+		linesvg.append("line")
 			.attr("class", "bg-line")
 			.attr("x1", 100)
 			.attr("y1", bglineY)
@@ -147,7 +147,7 @@
 
 	var circlesL = [ { cx: 400, cy:100, r:5 },];
 	//圆点设置
-	svg.selectAll("circleL")
+	linesvg.selectAll("circleL")
 		.data(circlesL)
 		.enter()
 		.append("circle")
@@ -165,7 +165,7 @@
 		.call(dragL);
 
 	//绘制左轴直线
-	svg.append("line")
+	linesvg.append("line")
 		.attr("id", "lineL")
 		.attr("x1", LeftPointX)
 		.attr("y1", 100)
@@ -219,7 +219,7 @@
 
 	var circlesR = [ { cx: 800, cy:100, r:5 },];
 	//右轴圆点设置
-	svg.selectAll("circleR")
+	linesvg.selectAll("circleR")
 		.data(circlesR)
 		.enter()
 		.append("circle")
@@ -237,7 +237,7 @@
 		.call(dragR);
 
 	//绘制右轴直线
-	svg.append("line")
+	linesvg.append("line")
 		.attr("id", "lineR")
 		.attr("x1", RightPointX)
 		.attr("y1", 100)
