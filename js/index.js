@@ -5,21 +5,13 @@
 	g_height = height - margin.top - 50;
 
 	//svg
-<<<<<<< HEAD
-<<<<<<< HEAD
-	var svg = d3.select("#container").append("svg").attr("width",width).attr("height",height)
-	//坐标轴
-=======
-=======
->>>>>>> 3855a1adcc084f78161210bb46ac8a6994edaab3
 	var linesvg = d3.select("#line-chart").append("svg").attr("width",width).attr("height",height)
 
->>>>>>> origin/master
 	var g = d3.select("svg").append("g").attr("transform", "translate(" + margin.left + ",100)")
 	var gBatt = d3.select("svg").append("g").attr("transform", "translate(" + margin.left + ",350)")
 	//像素比
 	var topScale = 1000/50;			//Y坐标上半轴每像素代表的值
-	var xScale = 1000/50;			//x坐标上半轴每像素代表的值
+	var xScale = 1000/50;			//X坐标上半轴每像素代表的值
 
 	//线条数据
 	var data1 = [1000,1000,1000,1000,3000,3000,3000,3000,2000,2000,
@@ -139,8 +131,8 @@
 				var X = document.getElementById("moveL").getAttribute("cx");			//圆点和直线圆点X坐标
 				var popoverL = parseInt(X)- 286;										//数据框左边框与直线偏移量
 				var lineX = scale1_x.invert(parseInt(X) - 100);
-				var differenceY = Math.abs(data1[parseInt(lineX.toFixed(2))-2] - data1[parseInt(lineX.toFixed(2))-1]);//计算当前点Y值与上一Y值差
-				var ydiff = parseInt(lineX.toFixed(2)%parseInt(lineX)*100); //每个X轴比例尺
+				var differenceY = data1[parseInt(lineX)-1] - data1[parseInt(lineX)];//计算当前点Y值与上一Y值差
+				var ydiff = (lineX.toFixed(2)%parseInt(lineX)).toFixed(2); //每个X轴比例尺
 
 				d3.select(this)
 				  .attr("cx", d.cx = d3.event.x )
@@ -151,10 +143,13 @@
 				d3.select("#popoverLeft").attr("style", "top: 110px;" + "left:"+ popoverL +"px; " + "display: block; ");
 
 				d3.select("#LSelf span").text(lineX.toFixed(2));
-				d3.select("#LGrid span").text(data1[parseInt(lineX)-1]);
+				d3.select("#LGrid span").text((data1[parseInt(lineX)-1] - differenceY*ydiff).toFixed(2));
+				d3.select("#LPV span").text(differenceY);
+				d3.select("#LSold span").text(ydiff);
+				d3.select("#LLoad span").text((differenceY*ydiff).toFixed(2));
+				d3.select("#LCharge span").text(data1[parseInt(lineX)-1]);
 
-				//console.log(data1[parseInt(lineX)-1]);
-				console.log(ydiff);
+				//console.log(differenceY*ydiff);
 
 
 			}
