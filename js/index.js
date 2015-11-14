@@ -5,40 +5,55 @@
 	g_height = height - margin.top - 50;
 
 	//svg
+<<<<<<< HEAD
+<<<<<<< HEAD
+	var svg = d3.select("#container").append("svg").attr("width",width).attr("height",height)
+	//坐标轴
+=======
+=======
+>>>>>>> 3855a1adcc084f78161210bb46ac8a6994edaab3
 	var linesvg = d3.select("#line-chart").append("svg").attr("width",width).attr("height",height)
 
+>>>>>>> origin/master
 	var g = d3.select("svg").append("g").attr("transform", "translate(" + margin.left + ",100)")
 	var gBatt = d3.select("svg").append("g").attr("transform", "translate(" + margin.left + ",350)")
+	//像素比
+	var topScale = 1000/50;			//Y坐标上半轴每像素代表的值
+	var xScale = 1000/50;			//x坐标上半轴每像素代表的值
 
 	//线条数据
-	var data1 = [1000,976,650,4700,848,4840,3000,2749,3241,3216,1254,3241,4131,1234,2541,2678,1951,1424,1300,1249,1642,1320,940,600,200]
-	var data2 = [-674,-1087,-671,-524,-2400,-1590,-3489,-4079,-2541,-2678,-1951,-1424,-1300,-1249,-645,-749,-1200,-640,-3250,-4650,-4840,-3000,-2749,-1200,-640]
-	var data3 = [2346,1543,3362,2572,1372,345,645,749,1200,640,3250,4650]
+	var data1 = [1000,1000,1000,1000,3000,3000,3000,3000,2000,2000,
+				 2000,4131,1234,2541,2678,1951,1424,1300,1249,1642,
+				 1320,940,600,200];
+	var data2 = [-1087,-671,-524,-2400,-1590,-3489,-4079,-2541,-2678,-1951,
+				 -1424,-1300,-1249,-645,-749,-1200,-640,-3250,-4650,-4840,
+				 -3000,-2749,-1200,-640];
+	var data3 = [2346,1543,3362,2572,1372,345,645,749,1200,640,3250,4650];
 
 	//X轴
-	var scale1_x = d3.scale.linear().domain([0, 24]).range([0, g_width])
-	var scale2_x = d3.scale.linear().domain([0, 0]).range([-20, g_width])
+	var scale1_x = d3.scale.linear().domain([1, 24]).range([0, g_width]);
+	var scale2_x = d3.scale.linear().domain([0, 0]).range([-20, g_width]);
 	//左侧刻度
-	var scale1_y = d3.scale.linear().domain([0, 5000]).range([250, 0])
-	var scale2_y = d3.scale.linear().domain([0, 6000]).range([0, 300])
+	var scale1_y = d3.scale.linear().domain([0, 5000]).range([250, 0]);
+	var scale2_y = d3.scale.linear().domain([0, 6000]).range([0, 300]);
 
 	//右侧刻度
-	var scale_y_r1 = d3.scale.linear().domain([0, 100]).range([250, 0])
-	var scale_y_r2 = d3.scale.linear().domain([40, 100]).range([0, 200])
+	var scale_y_r1 = d3.scale.linear().domain([0, 100]).range([250, 0]);
+	var scale_y_r2 = d3.scale.linear().domain([40, 100]).range([0, 200]);
 
 	//可以的左右轴
-	var move_l = d3.scale.linear().domain([0, 0]).range([500, 0])
-	var move_r = d3.scale.linear().domain([0, 0]).range([500, 0])
+	var move_l = d3.scale.linear().domain([0, 0]).range([500, 0]);
+	var move_r = d3.scale.linear().domain([0, 0]).range([500, 0]);
 
 
-	var line_generator = d3.svg.line().x(function(d,i){return scale1_x(i);}).y(function(d) {return scale1_y(d);}).interpolate("cardinal")
+	var line_generator = d3.svg.line().x(function(d,i){return scale1_x(i);}).y(function(d) {return scale1_y(d);}).interpolate("cardinal");
 
-	d3.select("g").append("path").attr("d", line_generator(data1)).attr("stroke","red")
-	d3.select("g").append("path").attr("d", line_generator(data2)).attr("stroke","blue")
-	d3.select("g").append("path").attr("d", line_generator(data3)).attr("stroke","green")
+	d3.select("g").append("path").attr("d", line_generator(data1)).attr("stroke","red").attr("transform", "translate(45,0)");
+	d3.select("g").append("path").attr("d", line_generator(data2)).attr("stroke","blue").attr("transform", "translate(45,0)");
+	d3.select("g").append("path").attr("d", line_generator(data3)).attr("stroke","green").attr("transform", "translate(45,0)");
 
 	//添加XY轴标尺
-	var x_axis = d3.svg.axis().scale(scale1_x).tickValues([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);		//时间轴
+	var x_axis = d3.svg.axis().scale(scale1_x).tickValues([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);		//时间轴
 	var x2_axis = d3.svg.axis().scale(scale2_x).outerTickSize([0]);																	//0刻度线
 	var y_axis = d3.svg.axis().scale(scale1_y)
 					.tickSize(0,0).tickPadding(30).tickValues([0,1000,2000,3000,4000,5000]).tickFormat(function(d) { return d; }).orient("left");	//左侧上部刻度
@@ -122,7 +137,10 @@
 			if( d3.event.x >=100 && d3.event.x <= 1100)
 			{
 				var X = document.getElementById("moveL").getAttribute("cx");			//圆点和直线圆点X坐标
-				var popoverL = parseInt(X)- 286;
+				var popoverL = parseInt(X)- 286;										//数据框左边框与直线偏移量
+				var lineX = scale1_x.invert(parseInt(X) - 100);
+				var differenceY = Math.abs(data1[parseInt(lineX.toFixed(2))-2] - data1[parseInt(lineX.toFixed(2))-1]);//计算当前点Y值与上一Y值差
+				var ydiff = parseInt(lineX.toFixed(2)%parseInt(lineX)*100); //每个X轴比例尺
 
 				d3.select(this)
 				  .attr("cx", d.cx = d3.event.x )
@@ -131,6 +149,12 @@
 				.attr("x1", function () {var x1 = X; return x1; })
 				.attr("x2", function () {var x2 = X; return x2; });
 				d3.select("#popoverLeft").attr("style", "top: 110px;" + "left:"+ popoverL +"px; " + "display: block; ");
+
+				d3.select("#LSelf span").text(lineX.toFixed(2));
+				d3.select("#LGrid span").text(data1[parseInt(lineX)-1]);
+
+				//console.log(data1[parseInt(lineX)-1]);
+				console.log(ydiff);
 
 
 			}
