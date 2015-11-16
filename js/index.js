@@ -17,9 +17,9 @@
 	var data1 = [1000,1000,1000,1000,3000,3000,3000,3000,2000,2000,
 				 2000,4131,1234,2541,2678,1951,1424,1300,1249,1642,
 				 1320,940,600,200];
-	var data2 = [-1087,-671,-524,-2400,-1590,-3489,-4079,-2541,-2678,-1951,
-				 -1424,-1300,-1249,-645,-749,-1200,-640,-3250,-4650,-4840,
-				 -3000,-2749,-1200,-640];
+	var data2 = [-1000,-1000,-1000,-1000,-3000,-3000,-3000,-3000,-2000,-2000,
+				 -2000,-2000,-1249,-645,-749,-2000,-2000,-2000,-3000,-3000,
+				 -3000,-1000,-1000,-1000];
 	var data3 = [2346,1543,3362,2572,1372,345,645,749,1200,640,3250,4650];
 
 	//X轴
@@ -38,7 +38,7 @@
 	var move_r = d3.scale.linear().domain([0, 0]).range([500, 0]);
 
 
-	var line_generator = d3.svg.line().x(function(d,i){return scale1_x(i);}).y(function(d) {return scale1_y(d);}).interpolate("cardinal");
+	var line_generator = d3.svg.line().x(function(d,i){return scale1_x(i);}).y(function(d) {return scale1_y(d);})//.interpolate("cardinal");
 
 	d3.select("g").append("path").attr("d", line_generator(data1)).attr("stroke","red").attr("transform", "translate(45,0)");
 	d3.select("g").append("path").attr("d", line_generator(data2)).attr("stroke","blue").attr("transform", "translate(45,0)");
@@ -48,17 +48,21 @@
 	var x_axis = d3.svg.axis().scale(scale1_x).tickValues([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);		//时间轴
 	var x2_axis = d3.svg.axis().scale(scale2_x).outerTickSize([0]);																	//0刻度线
 	var y_axis = d3.svg.axis().scale(scale1_y)
-					.tickSize(0,0).tickPadding(30).tickValues([0,1000,2000,3000,4000,5000]).tickFormat(function(d) { return d; }).orient("left");	//左侧上部刻度
+					.tickSize(0,0).tickPadding(30).tickValues([0,1000,2000,3000,4000,5000])
+					.tickFormat(function(d) { return d; }).orient("left");															//左侧上部刻度
 	var y2_axis = d3.svg.axis().scale(scale2_y)
-						.tickSize(0,0).tickPadding(30).tickValues([0,1000,2000,3000,4000,5000,6000]).tickFormat(function(d) { return d; }).orient("left");//左侧下部刻度
+						.tickSize(0,0).tickPadding(30).tickValues([0,1000,2000,3000,4000,5000,6000])
+						.tickFormat(function(d) { return d; }).orient("left");														//左侧下部刻度
 	var y_axis_r1 = d3.svg.axis().scale(scale_y_r1)
-						.tickSize(0,0).tickValues([0,20,40,60,80,100]).tickFormat(function(d) { return d + "%"; }).orient("right");				//右测上部刻度
+						.tickSize(0,0).tickValues([0,20,40,60,80,100])
+						.tickFormat(function(d) { return d + "%"; }).orient("right");												//右测上部刻度
 	var y_axis_r2 = d3.svg.axis().scale(scale_y_r2)
-						.tickSize(0,0).tickValues([55,70,85,100]).tickFormat(function(d) { return "BATT:" + "  " + d +"%"; }).orient("right");//右测下部刻度
+						.tickSize(0,0).tickValues([55,70,85,100])
+						.tickFormat(function(d) { return "BATT:" + "  " + d +"%"; }).orient("right");								//右测下部刻度
 
 	//可移动左右轴
-	var moveL_axis = d3.svg.axis().scale(move_l).orient("left").outerTickSize([0]);																//左移动轴
-	var moveR_axis = d3.svg.axis().scale(move_r).orient("left").outerTickSize([0]);																//右移动轴
+	var moveL_axis = d3.svg.axis().scale(move_l).orient("left").outerTickSize([0]);													//左移动轴
+	var moveR_axis = d3.svg.axis().scale(move_r).orient("left").outerTickSize([0]);													//右移动轴
 
 	//绘制显示
 	g.append("g").call(x_axis).attr("transform", "translate(0," + g_height +")")
@@ -113,7 +117,7 @@
 			bglineY+=50;
 	};
 
-	//绘制左右可移动轴
+	/*绘制左右可移动轴*/
 	var LeftPointX = 400;	//左侧圆点X Y坐标
 	var LeftPointY = 650;
 	var RightPointX = 800;	//右侧圆点X Y坐标
@@ -130,9 +134,9 @@
 			{
 				var X = document.getElementById("moveL").getAttribute("cx");			//圆点和直线圆点X坐标
 				var popoverL = parseInt(X)- 286;										//数据框左边框与直线偏移量
-				var lineX = scale1_x.invert(parseInt(X) - 100);
-				var differenceY = data1[parseInt(lineX)-1] - data1[parseInt(lineX)];//计算当前点Y值与上一Y值差
-				var ydiff = (lineX.toFixed(2)%parseInt(lineX)).toFixed(2); //每个X轴比例尺
+				var lineX = scale1_x.invert(parseInt(X) - 100);							//X轴偏移量，计算出所处时间点
+				var differenceY = data1[parseInt(lineX)-1] - data1[parseInt(lineX)];	//计算当前点Y值与上一Y值差
+				var ydiff = (lineX.toFixed(2)%parseInt(lineX)).toFixed(2); 				//计算X当前点所在这段比例尺中的距离
 
 				d3.select(this)
 				  .attr("cx", d.cx = d3.event.x )
@@ -202,7 +206,10 @@
 			if( d3.event.x >=100 && d3.event.x <= 1100)
 			{
 				var X = document.getElementById("moveR").getAttribute("cx");			//圆点和直线圆点X坐标
-				var xR = parseInt(X)+ 10;
+				var popoverR = parseInt(X)+ 10;											//数据框右边框与直线偏移量
+				var lineX = scale1_x.invert(parseInt(X) - 100);							//X轴偏移量，计算出所处时间点
+				var differenceY = data2[parseInt(lineX)-1] - data2[parseInt(lineX)];	//计算当前点Y值与上一Y值差
+				var ydiff = (lineX.toFixed(2)%parseInt(lineX)).toFixed(2); 				//计算X当前点所在这段比例尺中的距离
 
 				d3.select(this)
 				  .attr("cx", d.cx = d3.event.x )
@@ -212,11 +219,11 @@
 				.attr("x2", function () {var x = X; return x; });
 
 				d3.select("#popoverRight")
-				.attr("style", "top: 110px;" + "left:"+ xR +"px; display: block; ");
+				.attr("style", "top: 110px;" + "left:"+ popoverR +"px; display: block; ");
 
-				d3.select("#RSelf span").text(function () {return x = X; });
-				d3.select("#RGrid span").text(function () {return x = X; });
-				d3.select("#RPV span").text(function () {return x = X; });
+				d3.select("#RSelf span").text(lineX.toFixed(2));
+				d3.select("#RGrid span").text(ydiff);
+				d3.select("#RPV span").text(Math.abs((data2[parseInt(lineX)-1] - differenceY*ydiff).toFixed(2)));
 				d3.select("#RSold span").text(function () {return x = X; });
 				d3.select("#RLoad span").text(function () {return x = X; });
 				d3.select("#RCharge span").text(function () {return x = X; });
