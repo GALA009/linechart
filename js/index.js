@@ -13,6 +13,38 @@
 	var topScale = 1000/50;			//Y坐标上半轴每像素代表的值
 	var xScale = 1000/50;			//X坐标上半轴每像素代表的值
 
+
+	d3.csv("line.csv", function (error, data)
+	{
+		if(error) console.log(error);
+
+		data.forEach(function(d) {
+			//d.no  = new Date (d.no);
+			d.no = d.no;
+			d.line1 = +d.line1;
+			d.line2 = +d.line2;
+		});
+
+		//X轴
+		var scale1_x = d3.scale.linear().domain([1, 24]).range([0, g_width]);
+		var scale2_x = d3.scale.linear().domain([0, 0]).range([-20, g_width]);
+		//左侧刻度
+		var scale1_y = d3.scale.linear().domain([0, 5000]).range([250, 0]);
+		var scale2_y = d3.scale.linear().domain([0, 6000]).range([0, 300]);
+
+		var line_generator = d3.svg.line()
+							.x(function(d) { return scale1_x(d.no-1);})
+							.y(function(d) { return scale1_y(d.line1);});
+							//.interpolate("cardinal");
+
+		d3.select("g").append("path")
+						.attr("d", line_generator(data))
+						.attr("stroke","red")
+						.attr("transform", "translate(45,0)")
+						.attr("transition", "ease(0.6)");
+
+	});
+
 	//线条数据
 	var data1 = [1000,1000,1000,1000,3000,3000,3000,3000,2000,2000,
 				 2000,4131,1234,2541,2678,1951,1424,1300,1249,1642,
@@ -33,14 +65,14 @@
 	var scale_y_r1 = d3.scale.linear().domain([0, 100]).range([250, 0]);
 	var scale_y_r2 = d3.scale.linear().domain([40, 100]).range([0, 200]);
 
-	//可以的左右轴
+	//可移动左右轴
 	var move_l = d3.scale.linear().domain([0, 0]).range([500, 0]);
 	var move_r = d3.scale.linear().domain([0, 0]).range([500, 0]);
 
 
 	var line_generator = d3.svg.line().x(function(d,i){return scale1_x(i);}).y(function(d) {return scale1_y(d);})//.interpolate("cardinal");
 
-	d3.select("g").append("path").attr("d", line_generator(data1)).attr("stroke","red").attr("transform", "translate(45,0)");
+	//d3.select("g").append("path").attr("d", line_generator(data1)).attr("stroke","red").attr("transform", "translate(45,0)").attr("transition", "ease(0.6)");
 	d3.select("g").append("path").attr("d", line_generator(data2)).attr("stroke","blue").attr("transform", "translate(45,0)");
 	d3.select("g").append("path").attr("d", line_generator(data3)).attr("stroke","green").attr("transform", "translate(45,0)");
 
