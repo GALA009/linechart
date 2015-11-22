@@ -79,11 +79,11 @@
 			if (cx >= 100 && cx <= 1100) {
 				if (d3.event.x >= 100 && d3.event.x <= 1100) {
 
-					var X = document.getElementById("moveL").getAttribute("cx"); //圆点和直线圆点X坐标
-					var popoverL = parseInt(X) - 286; //数据框左边框与直线偏移量
-					var lineX = scale1_x.invert(parseInt(X) - 100); //X轴偏移量，计算出所处时间点
-					var differenceY = data[parseInt(lineX) - 1].line1 - data[parseInt(lineX)].line1; //计算当前点Y值与上一Y值差
-					var ydiff = (lineX.toFixed(2) % parseInt(lineX)).toFixed(2); //计算X当前点所在这段比例尺中的距离
+					var X = document.getElementById("moveL").getAttribute("cx"); 						//圆点和直线圆点X坐标
+					var popoverL = parseInt(X) - 286; 													//数据框左边框与直线偏移量
+					var lineX = scale1_x.invert(parseInt(X) - margin.left); 							//X轴偏移量，计算出所处时间点
+					var differenceY = data[parseInt(lineX) - 1].line1 - data[parseInt(lineX)].line1; 	//计算当前点Y值与上一Y值差
+					var ydiff = (lineX.toFixed(2) % parseInt(lineX)).toFixed(2); 						//计算X当前点所在这段比例尺中的距离
 
 					d3.select(this)
 						.attr("cx", cx = d3.event.x)
@@ -150,11 +150,11 @@
 
 			if (cx >= 100 && cx <= 1100) {
 				if (d3.event.x >= 100 && d3.event.x <= 1100) {
-					var X = parseInt(document.getElementById("moveR").getAttribute("cx")); //圆点和直线圆点X坐标
-					var popoverR = parseInt(X) + 10; //数据框右边框与直线偏移量
-					var lineX = scale1_x.invert(parseInt(X) - 100); //X轴偏移量，计算出所处时间点
-					var differenceY = data[parseInt(lineX) - 1].line2 - data[parseInt(lineX)].line2; //计算当前点Y值与上一Y值差
-					var ydiff = (lineX.toFixed(2) % parseInt(lineX)).toFixed(2); //计算X当前点所在这段比例尺中的距离
+					var X = parseInt(document.getElementById("moveR").getAttribute("cx")); 				//圆点和直线圆点X坐标
+					var popoverR = parseInt(X) + 10; 													//数据框右边框与直线偏移量
+					var lineX = scale1_x.invert(parseInt(X) - margin.left); 							//X轴偏移量，计算出所处时间点
+					var differenceY = data[parseInt(lineX) - 1].line2 - data[parseInt(lineX)].line2; 	//计算当前点Y值与上一Y值差
+					var ydiff = (lineX.toFixed(2) % parseInt(lineX)).toFixed(2); 						//计算X当前点所在这段比例尺中的距离
 
 					d3.select(this)
 						.attr("cx", cx = d3.event.x)
@@ -171,15 +171,9 @@
 					d3.select("#RPV span").text(Math.abs((data[parseInt(lineX) - 1].line2 - differenceY * ydiff).toFixed(2)));
 					d3.select("#RSold span").text(differenceY);
 					d3.select("#RLoad span").text(data[parseInt(lineX) - 1].line2);
-					d3.select("#RCharge span").text(function() {
-						return x = X;
-					});
-					d3.select("#RDischarge span").text(function() {
-						return x = X;
-					});
-					d3.select("#RSOC span").text(function() {
-						return x = X;
-					});
+					d3.select("#RCharge span").text(function() { return x = X; });
+					d3.select("#RDischarge span").text(function() { return x = X; });
+					d3.select("#RSOC span").text(function() { return x = X; });
 
 
 				}
