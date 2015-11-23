@@ -17,8 +17,14 @@
 </head>
 <body>
 	<div id="container">
-		<div id="line-chart">
-			<div id="popoverLeft" class="popover fade left in" role="tooltip" style=" top :110px; left: 114px; display: block;">
+		<div class="btn-group pull-right" role="group" aria-label="...">
+			<button type="button" class="btn btn-default" value="line-chart">LineChart</button>
+			<button type="button" class="btn btn-default" value="stacked">Stacked</button>
+		</div>
+		<div class="clearfix"></div>
+
+		<div id="line-chart" style="display: none">
+			<div id="popover-left" class="popover fade left in" role="tooltip" style=" top :110px; left: 114px; display: block;">
 				<div class="arrow" style="top: 50%;"></div>
 				<div class="popover-content">
 					<ul>
@@ -35,7 +41,7 @@
 			</div>
 
 
-			<div id="popoverRight" class="popover fade right in" role="tooltip" style="top :110px; left: 810px; display: block;">
+			<div id="popover-right" class="popover fade right in" role="tooltip" style="top :110px; left: 810px; display: block;">
 				<div class="arrow" style="top: 50%;"></div>
 				<div class="popover-content">
 					<ul>
@@ -51,15 +57,28 @@
 				</div>
 			</div>
 		</div>
+		<div id="stacked" style="display: block; ">
+
+		</div>
   	</div>
 
 	<script src="js/jquery-1.11.3.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/d3.min.js"></script>
 	<script src="js/index.js"></script>
+	<script src="js/stacked.js"></script>
 	<script>
 	$(function() {
-		// $('#container').append('<div id="popoverRight" class="popover fade right in" role="tooltip" style="top :100px; left: 800px; display: block;">')
+		$('button[value=line-chart]').click( function () {
+			$('#stacked').css({ "display": "none" });
+			$('#line-chart').css({ "display": "block" });
+			});
+
+		$('button[value=stacked]').click( function () {
+			$('#stacked').css({ "display": "block" });
+			$('#line-chart').css({ "display": "none" });
+			});
+
 		});
 	</script>
 

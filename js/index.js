@@ -97,7 +97,7 @@
 							var x2 = X;
 							return x2;
 						});
-					d3.select("#popoverLeft").attr("style", "top: 110px;" + "left:" + popoverL + "px; " + "display: block; ");
+					d3.select("#popover-left").attr("style", "top: 110px;" + "left:" + popoverL + "px; " + "display: block; ");
 
 					d3.select("#LSelf span").text(lineX.toFixed(2));
 					d3.select("#LGrid span").text((data[parseInt(lineX) - 1].line1 - differenceY * ydiff).toFixed(2));
@@ -163,7 +163,7 @@
 						.attr("x1", x1 = d3.event.x)
 						.attr("x2", x2 = d3.event.x);
 
-					d3.select("#popoverRight")
+					d3.select("#popover-right")
 						.attr("style", "top: 110px;" + "left:" + popoverR + "px; display: block; ");
 
 					d3.select("#RSelf span").text(lineX.toFixed(2));
@@ -212,8 +212,6 @@
 			.attr("y2", RightPointY)
 			.attr("stroke", "#B3B3B3")
 			.attr("stroke-width", 1);
-
-
 	});
 
 
