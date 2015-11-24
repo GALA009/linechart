@@ -64,3 +64,16 @@ path
 
     text-align: right;
 }
+/*堆积图*/
+.bar1 {
+	fill: steelblue;
+}
+.bar2 {
+	fill: green;
+}
+.bar3 {
+	fill: red;
+}
+.bar4 {
+	fill: yellow;
+}

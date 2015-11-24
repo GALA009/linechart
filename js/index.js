@@ -68,7 +68,7 @@
 		var LeftPointY = 650;
 		var RightPointX = 800; 		//右侧圆点X Y坐标
 		var RightPointY = 650;
-		var r = 3; 					//小圆点半径
+		var r = 5; 					//小圆点半径
 
 		//绘制左侧移动轴圆和直线
 		var dragL = d3.behavior.drag().on("drag", dragmoveL);
@@ -80,7 +80,7 @@
 				if (d3.event.x >= 100 && d3.event.x <= 1100) {
 
 					var X = document.getElementById("moveL").getAttribute("cx"); 						//圆点和直线圆点X坐标
-					var popoverL = parseInt(X) - 286; 													//数据框左边框与直线偏移量
+					var popoverL = parseInt(X) - 276; 													//数据框左边框与直线偏移量
 					var lineX = scale1_x.invert(parseInt(X) - margin.left); 							//X轴偏移量，计算出所处时间点
 					var differenceY = data[parseInt(lineX) - 1].line1 - data[parseInt(lineX)].line1; 	//计算当前点Y值与上一Y值差
 					var ydiff = (lineX.toFixed(2) % parseInt(lineX)).toFixed(2); 						//计算X当前点所在这段比例尺中的距离
@@ -97,7 +97,7 @@
 							var x2 = X;
 							return x2;
 						});
-					d3.select("#popover-left").attr("style", "top: 110px;" + "left:" + popoverL + "px; " + "display: block; ");
+					d3.select("#popover-left").attr("style", "top: 140px;" + "left:" + popoverL + "px; " + "display: block; ");
 
 					d3.select("#LSelf span").text(lineX.toFixed(2));
 					d3.select("#LGrid span").text((data[parseInt(lineX) - 1].line1 - differenceY * ydiff).toFixed(2));
@@ -125,10 +125,10 @@
 			.attr("r", r) //圆点半径
 			.attr("fill", "#B3B3B3")
 			.on("mouseover", function() {
-				d3.select(this).transition().duration(200).attr("r", 5);
+				d3.select(this).transition().duration(200).attr("r", 7);
 			})
 			.on("mouseout", function() {
-				d3.select(this).transition().duration(200).attr("r", 3);
+				d3.select(this).transition().duration(200).attr("r", 5);
 			})
 			.call(dragL);
 
@@ -151,7 +151,7 @@
 			if (cx >= 100 && cx <= 1100) {
 				if (d3.event.x >= 100 && d3.event.x <= 1100) {
 					var X = parseInt(document.getElementById("moveR").getAttribute("cx")); 				//圆点和直线圆点X坐标
-					var popoverR = parseInt(X) + 10; 													//数据框右边框与直线偏移量
+					var popoverR = parseInt(X); 													//数据框右边框与直线偏移量
 					var lineX = scale1_x.invert(parseInt(X) - margin.left); 							//X轴偏移量，计算出所处时间点
 					var differenceY = data[parseInt(lineX) - 1].line2 - data[parseInt(lineX)].line2; 	//计算当前点Y值与上一Y值差
 					var ydiff = (lineX.toFixed(2) % parseInt(lineX)).toFixed(2); 						//计算X当前点所在这段比例尺中的距离
@@ -164,7 +164,7 @@
 						.attr("x2", x2 = d3.event.x);
 
 					d3.select("#popover-right")
-						.attr("style", "top: 110px;" + "left:" + popoverR + "px; display: block; ");
+						.attr("style", "top: 140px;" + "left:" + popoverR + "px; display: block; ");
 
 					d3.select("#RSelf span").text(lineX.toFixed(2));
 					d3.select("#RGrid span").text(ydiff);
@@ -196,10 +196,10 @@
 			.attr("r", r) //圆点半径
 			.attr("fill", "#B3B3B3")
 			.on("mouseover", function() {
-				d3.select(this).transition().duration(200).attr("r", 5);
+				d3.select(this).transition().duration(200).attr("r", 7);
 			})
 			.on("mouseout", function() {
-				d3.select(this).transition().duration(200).attr("r", 3);
+				d3.select(this).transition().duration(200).attr("r", 5);
 			})
 			.call(dragR);
 
