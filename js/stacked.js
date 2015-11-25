@@ -26,45 +26,97 @@
 	d3.csv("stacked.csv", function(error, data) {
 		if (error) console.log(error);
 
+		var stack = d3.layout.stack()
+						.values(function(d){ return d.sales; })
+						.x(function(d){ return d.date; })
+						.y(function(d){ return d.profit; });
+
 		x.domain(data.map(function(d) { return d.date; }));
 		y.domain([10, 70]);
 		//绘制显示
 		g.append("g").call(xAxis)
 						.attr("transform", "translate(0," + g_height + ")")
-						.append("text").text("H")
-						.attr("transform", "translate(1010,30)"); 				//时间轴
+						.append("text").text("Day")
+						.attr("fill", "gray")
+						.attr("font-size", "18")
+						.attr("transform", "translate(1010,0)"); 				//时间轴
 
 		g.append("g").call(yAxis);
 
 	bars = svg.selectAll(".bar").data(data).enter();
 
 	bars.append("rect")
-		.attr("class", "bar1")
+		.attr("class", "fill-gray")
 		.attr("x", function(d) { return x(d.date) + 100; })
 		.attr("width", x.rangeBand()/4)
-		.attr("y", function(d) { return y(d.yellow1) + 100; })
-		.attr("height", function(d,i,j) { return g_height - y(d.yellow1); });
+		.attr("y", function(d) { return parseInt(y(d.yellow1) + 100); })
+		.attr("height", function(d,i,j) { return parseInt(g_height - y(d.yellow1)); });
 
 	bars.append("rect")
-		.attr("class", "bar2")
-		.attr("x", function(d) { return x(d.date) + x.rangeBand()/4 + 100; })
+		.attr("class", "fill-black")
+		.attr("x", function(d) { return x(d.date)  + 100; })
 		.attr("width", x.rangeBand() / 4)
-		.attr("y", function(d) { return y(d.yellow2) + 100; })
-		.attr("height", function(d,i,j) { return g_height - y(d.yellow2); });
+		.attr("y", function(d) { return parseInt(y(d.yellow2) + 100); })
+		.attr("height", function(d,i,j) { return parseInt(g_height - y(d.yellow2)); });
 
 	bars.append("rect")
-		.attr("class", "bar3")
-		.attr("x", function(d) { return x(d.date) + x.rangeBand()/4 + 132; })
+		.attr("class", "fill-yellow")
+		.attr("x", function(d) { return x(d.date) + 100; })
 		.attr("width", x.rangeBand() / 4)
-		.attr("y", function(d) { return y(d.yellow3) + 100; })
-		.attr("height", function(d,i,j) { return g_height - y(d.yellow3); });
+		.attr("y", function(d) { return parseInt(y(d.yellow3) + 100); })
+		.attr("height", function(d,i,j) { return parseInt(g_height - y(d.yellow3)); });
 
 	bars.append("rect")
-		.attr("class", "bar4")
-		.attr("x", function(d) { return x(d.date) + x.rangeBand()/4 + 164; })
+		.attr("class", "fill-gray")
+		.attr("x", function(d) { return x(d.date) + x.rangeBand()/4 + 101; })
 		.attr("width", x.rangeBand() / 4)
-		.attr("y", function(d) { return y(d.green1) + 100; })
-		.attr("height", function(d,i,j) { return g_height - y(d.green1); });
+		.attr("y", function(d) { return parseInt(y(d.green1) + 100); })
+		.attr("height", function(d,i,j) { return parseInt(g_height - y(d.green1)); });
 
+	bars.append("rect")
+		.attr("class", "fill-green")
+		.attr("x", function(d) { return x(d.date)  + x.rangeBand()/4 + 101; })
+		.attr("width", x.rangeBand() / 4)
+		.attr("y", function(d) { return parseInt(y(d.green2) + 100); })
+		.attr("height", function(d,i,j) { return parseInt(g_height - y(d.green2)); });
+
+	bars.append("rect")
+		.attr("class", "fill-gray")
+		.attr("x", function(d) { return x(d.date) + x.rangeBand()/4 + 134; })
+		.attr("width", x.rangeBand() / 4)
+		.attr("y", function(d) { return parseInt(y(d.blue1) + 100); })
+		.attr("height", function(d,i,j) { return parseInt(g_height - y(d.blue1)); });
+
+	bars.append("rect")
+		.attr("class", "fill-steelblue")
+		.attr("x", function(d) { return x(d.date)  + x.rangeBand()/4 + 134; })
+		.attr("width", x.rangeBand() / 4)
+		.attr("y", function(d) { return parseInt(y(d.blue2) + 100); })
+		.attr("height", function(d,i,j) { return parseInt(g_height - y(d.blue2)); });
+
+	bars.append("rect")
+		.attr("class", "fill-gray")
+		.attr("x", function(d) { return x(d.date) + x.rangeBand()/4 + 167; })
+		.attr("width", x.rangeBand() / 4)
+		.attr("y", function(d) { return parseInt(y(d.red1) + 100); })
+		.attr("height", function(d,i,j) { return parseInt(g_height - y(d.red1)); });
+
+	bars.append("rect")
+		.attr("class", "fill-red")
+		.attr("x", function(d) { return x(d.date)  + x.rangeBand()/4 + 167; })
+		.attr("width", x.rangeBand() / 4)
+		.attr("y", function(d) { return parseInt(y(d.red2) + 100); })
+		.attr("height", function(d,i,j) { return parseInt(g_height - y(d.red2)); });
+
+		svg.selectAll("text")
+			.data(data)
+			.enter()
+			.append("text")
+			.attr("x", function(d, i) { return d.red1; })
+			.attr("y", function(d, i) { return i; })
+			.attr("dx", "5")
+			.attr("dy", "18")
+			.attr("fill", "white")
+			.text("asdf")
 
 	});

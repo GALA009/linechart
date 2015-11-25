@@ -65,15 +65,22 @@ path
     text-align: right;
 }
 /*堆积图*/
-.bar1 {
+.fill-steelblue {
 	fill: steelblue;
 }
-.bar2 {
+.fill-green {
 	fill: green;
+
 }
-.bar3 {
+.fill-red {
 	fill: red;
 }
-.bar4 {
+.fill-yellow {
 	fill: yellow;
+}
+.fill-gray {
+	fill: gray;
+}
+.fill-black {
+	fill: black;
 }
