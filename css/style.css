@@ -65,22 +65,24 @@ path
     text-align: right;
 }
 /*堆积图*/
-.fill-steelblue {
-	fill: steelblue;
+.fill-blue {
+	fill: rgb(120,207,199);
 }
 .fill-green {
-	fill: green;
-
+	fill: rgb(140,201,71);
 }
 .fill-red {
-	fill: red;
+	fill: rgb(237,51,71);
 }
 .fill-yellow {
-	fill: yellow;
+	fill: rgb(255,237,145);
 }
 .fill-gray {
-	fill: gray;
+	fill: rgb(92,106,120);
 }
 .fill-black {
 	fill: black;
+}
+.fill-white {
+	fill: rgb(244,244,244);
 }
