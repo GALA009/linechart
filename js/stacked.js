@@ -50,15 +50,7 @@
 		.attr("x", function(d) { return x(d.date) + 100; })
 		.attr("width", parseInt(x.rangeBand()/4 ))
 		.attr("y", function(d) { return parseInt(y(d.yellow1) + 99); })
-		.attr("height", function(d,i,j) { return parseInt(g_height - y(d.yellow1)); })
-		.on("mouseover", function() {
-			d3.select(this)
-				.transition()
-				.duration(200);
-		})
-		.on("mouseout", function() {
-			d3.select(this).transition().duration(200).attr("r", 5);
-		});
+		.attr("height", function(d,i,j) { return parseInt(g_height - y(d.yellow1)); });
 	svg.selectAll("rect text")
 			.data(data)
 			.enter()
