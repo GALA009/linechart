@@ -41,6 +41,11 @@
 
 
 
+		var bar = d3.select(".bar-chart");
+
+		bar.select(".item-one .bg-color-white")
+			.style("height", "200px");
+
 
 
 

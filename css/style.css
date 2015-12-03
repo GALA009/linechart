@@ -85,6 +85,7 @@ path
 .fill-white {
 	fill: rgb(244,244,244);
 }
+
 .bg-color-yellow {
 	background-color: rgb(255,237,145);
 	height: 100px;
@@ -107,7 +108,6 @@ path
 }
 .bg-color-white {
 	background-color: rgb(244,244,244);
-	height: 200px;
 }
 
 .stacked {
