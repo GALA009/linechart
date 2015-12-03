@@ -1,3 +1,5 @@
+*{ margin: 0; padding: 0;
+}
 path
 {
     fill: none;
@@ -80,9 +82,98 @@ path
 .fill-gray {
 	fill: rgb(92,106,120);
 }
-.fill-black {
-	fill: black;
-}
 .fill-white {
 	fill: rgb(244,244,244);
 }
+.bg-color-yellow {
+	background-color: rgb(255,237,145);
+	height: 100px;
+}
+.bg-color-green {
+	background-color: rgb(140,201,71);
+	height: 100px;
+}
+.bg-color-blue {
+	background-color: rgb(120,207,199);
+	height: 100px;
+}
+.bg-color-red {
+	background-color: rgb(237,51,71);
+	height: 100px;
+}
+.bg-color-gray {
+	background-color: rgb(92,106,120);
+	height: 150px;
+}
+.bg-color-white {
+	background-color: rgb(244,244,244);
+	height: 200px;
+}
+
+.stacked {
+	position: relative;
+}
+.bar-chart {
+	position: absolute;
+	width: 148px;
+	bottom: 17px;
+	left: 100px;
+}
+.bar-chart-one {
+	left: 117px;
+}
+.bar-chart-two {
+	left: 254px;
+}
+.item {
+	position: relative;
+	display: inline-block;
+	float: left;
+	margin-right: 1px;
+}
+.item span:nth-child(2) {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+.item span:nth-child(3) {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+.item-text {
+	position: relative;
+	display: inline-block;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 14px;
+	font-weight: normal;
+	width: 32px;
+	height: 30px;
+	border-radius: 20px;
+	margin-top: 3px;
+	margin-left: 2px;
+}
+.item-text small {
+	position: absolute;
+	top: 14px;
+	left: 2px;
+}
+.item-text-percent {
+	padding-top: 6px;
+}
+.item-line {
+	display: inline-block;
+	width: 36px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+
+}
+.clear {
+    font-size: 0;
+    line-height: 0;
+    clear: both;
+    height: 0;
+}
+
+
