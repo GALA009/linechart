@@ -28,6 +28,7 @@
 
 		x.domain(data.map(function(d) { return d.date; }));
 		y.domain([10, 70]);
+
 		//绘制显示
 		g.append("g").call(xAxis)
 						.attr("transform", "translate(0," + g_height + ")")
@@ -39,11 +40,18 @@
 		g.append("g").call(yAxis);
 
 
-
-
 		var bar = d3.select(".bar-chart");
 
 		bar.select(".item-one .bg-color-white")
+			.style("height", function(d) { return parseInt(g_height - y(45)) + "px"; });
+
+		bar.select(".item-two .bg-color-white")
+			.style("height", "250px");
+
+		bar.select(".item-three .bg-color-white")
+			.style("height", "200px");
+
+		bar.select(".item-four .bg-color-white")
 			.style("height", "200px");
 
 
@@ -51,17 +59,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-	//bars = svg.selectAll(".bar").data(data).enter();
+	// bars = svg.selectAll(".bar").data(data).enter();
 
 	// bars.append("rect")
 	// 	.attr("class", "fill-white")

@@ -107,6 +107,9 @@ path
 	height: 150px;
 }
 .bg-color-white {
+	position: absolute;
+	left: 0;
+	bottom: 0;
 	background-color: rgb(244,244,244);
 }
 
@@ -140,6 +143,15 @@ path
 	position: absolute;
 	left: 0;
 	bottom: 0;
+}
+.item-two {
+	margin-left: 37px;
+}
+.item-three {
+	margin-left: 74px;
+}
+.item-four {
+	margin-left: 111px;
 }
 .item-text {
 	position: relative;
