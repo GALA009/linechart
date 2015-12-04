@@ -43,16 +43,16 @@
 		var bar = d3.select(".bar-chart");
 
 		bar.select(".item-one .bg-color-white")
-			.style("height", function(d) { return parseInt(g_height - y(45)) + "px"; });
+			.style("height", function(d) { return parseInt(g_height - y(40)) + "px"; });
 
 		bar.select(".item-two .bg-color-white")
-			.style("height", "250px");
+			.style("height", function(d) { return parseInt(g_height - y(50)) + "px"; });
 
 		bar.select(".item-three .bg-color-white")
-			.style("height", "200px");
+			.style("height", function(d) { return parseInt(g_height - y(30)) + "px"; });
 
 		bar.select(".item-four .bg-color-white")
-			.style("height", "200px");
+			.style("height", function(d) { return parseInt(g_height - y(45)) + "px"; });
 
 
 
